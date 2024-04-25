@@ -1,1 +1,13 @@
 
+![AQL](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/798b5cad-50dc-430b-adb5-b30873ddd5c7)
+![Astro init CMD](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/8a54188b-08d5-4f99-acdc-2a42f62b685c)
+![AWS Bucket y Archivo CSV](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/205446a6-c7cb-4d9e-8fb9-704017c9ec56)
+![AWS Conn](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/ee1e764c-ff1b-4179-87fb-c8852e560e27)
+![AWS IAM user](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/8b8bf282-c48b-423f-9e91-d891240f7925)
+![DAG, Tasks y Dependencies](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/3dd4cad6-6a94-4536-b9e2-cce34b90fd8e)
+![Imports y Variables](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/78b670bb-717f-496a-852d-d8c897f721bb)
+![Pipeline Success](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/787ea0ef-6b44-45d4-a79f-3f304a4d6eac)
+![Requirements](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/ddf1fa52-8f78-48e8-bde8-f3ebc6ac4d03)
+![Snowflake Astro WH](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/183fb919-d9ec-489a-85d7-5c975bcbdeef)
+![Snowflake Conn](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/b4f38802-f5cd-4be2-a7af-8db34f984304)
+![Snowflake Schema](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/c20cc574-31ec-4617-8f3e-7a5c0693aec6)
