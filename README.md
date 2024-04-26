@@ -1,13 +1,89 @@
+# Airflow Data Pipeline con AWS y Snowflake
 
-![AQL](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/798b5cad-50dc-430b-adb5-b30873ddd5c7)
+El objetivo del proyecto es crear un flujo de datos completamente funcional que interactúa con Snowflake y AWS utilizando Astro SDK. El proyecto busca proporcionar experiencia práctica en la configuración del entorno de Airflow, la carga de datos en S3, la configuración de Snowflake e implementar diversas tareas de flujo de datos como carga, filtrado, unión, fusión, transformación y limpieza de datos.
+
+## Pre-requisitos
+
+- Tener instalado Astro CLI
+- Tener instalado Docker 
+
+## Tech Stack
+- Python
+- AWS S3
+- Snowflake
+- Astro SDK
+- Docker
+- Airflow
+
+## Setup de Airflow
+
+### Iniciamos el proyecto mediante Astro CLI
+
 ![Astro init CMD](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/8a54188b-08d5-4f99-acdc-2a42f62b685c)
-![AWS Bucket y Archivo CSV](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/205446a6-c7cb-4d9e-8fb9-704017c9ec56)
-![AWS Conn](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/ee1e764c-ff1b-4179-87fb-c8852e560e27)
-![AWS IAM user](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/8b8bf282-c48b-423f-9e91-d891240f7925)
-![DAG, Tasks y Dependencies](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/3dd4cad6-6a94-4536-b9e2-cce34b90fd8e)
-![Imports y Variables](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/78b670bb-717f-496a-852d-d8c897f721bb)
-![Pipeline Success](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/787ea0ef-6b44-45d4-a79f-3f304a4d6eac)
-![Requirements](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/ddf1fa52-8f78-48e8-bde8-f3ebc6ac4d03)
-![Snowflake Astro WH](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/183fb919-d9ec-489a-85d7-5c975bcbdeef)
-![Snowflake Conn](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/b4f38802-f5cd-4be2-a7af-8db34f984304)
-![Snowflake Schema](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/c20cc574-31ec-4617-8f3e-7a5c0693aec6)
+
+### Instalamos AstroSDK con los providers de Amazon y Snowflake
+
+![Requirements](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/2d289bc2-c7f9-4632-a170-2106daa3ff1f)
+
+### Variables de entorno
+
+![env](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/5602d760-88b2-4a59-acf2-5b3cec41f114)
+
+### orders_data_header.csv
+
+![csv](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/48a28052-467c-409c-9661-69f3b0abb53d)
+
+## AWS S3 e IAM
+
+### Creamos un S3 bucket y subimos orders_data_header.csv
+
+![AWS Bucket y Archivo CSV](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/bc74d625-8330-4bc3-94d0-3205b071897b)
+
+### Creamos un usuario, damos el rol de AdministratorAccess y asignamos una Access Key (IAM)
+
+![AWS IAM user](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/99d12f00-4646-414d-8755-3ecf699108da)
+
+## Snowflake: DB, Schema, DW, Customers Table y Orders Table
+
+### Schema
+
+![Snowflake Schema](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/8d4f73aa-2c0c-4151-868d-9b1762280502)
+
+### Data Warehouse
+
+![Snowflake Astro WH](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/b1e3859e-9ce2-4d9b-b1e9-7da064caea13)
+
+### Tables
+
+![Table](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/05f7af56-4014-49a0-ad8f-05e04c15a8e1)
+
+## Creamos las conexiones correspondientes
+
+### AWS 
+
+![AWS Conn](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/1f70f5f3-225e-48c8-ac0b-6a99e643809b)
+
+### Snowflake
+
+![Snowflake Conn](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/84bb2e7d-36e5-4fd5-8505-7bc7cc5f1b20)
+
+## Creamos el Data Pipeline: astro_orders.py
+
+Cargaremos el archivo del S3 bucket a una tabla, filtraremos las órdenes de esa tabla y las uniremos con los clientes. Luego, fusionaremos los datos en la tabla de informes y, finalmente, transformaremos los datos dentro de esta tabla para obtener las fechas de compra. Para concluir, eliminaremos todas las tablas temporales creadas durante el proceso.
+
+### Imports y Variables
+
+![Imports y Variables](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/f79c6285-4a6b-47c1-893f-b9e0c4d12451)
+
+### AQL 
+
+![AQL](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/63987f04-acdf-4e4d-9ccf-505415576380)
+
+### DAG, Tasks y Dependencias
+
+![DAG, Tasks y Dependencies](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/a06224f6-006d-4cf3-b7db-84282c77a5bf)
+
+### ¡Data Pipeline en acción!
+
+![Pipeline Success](https://github.com/rodrigosvv/aws-snowflake-astrosdk-airflow-data-pipeline-project/assets/143859478/f1e1fa50-5b5b-4190-a9c7-b1f880e07c64)
+
